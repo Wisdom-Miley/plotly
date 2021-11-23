@@ -1,5 +1,5 @@
 function init() {
-  // Select the dropdown element
+  // dropdown element
   var selector = d3.select("#selDataset");
   
   
@@ -32,7 +32,7 @@ function updateMetadata(sample) {
           metaPanel.append("h6").text(`${key.toUpperCase()}: ${value}`)
       })
   
-// Data for Gauge Chart
+// Create Gauge Chart
   var data = [
     {
       domain: { x: [0, 1], y: [0, 1] },
@@ -63,7 +63,7 @@ function updateMetadata(sample) {
   });
 }
 
-
+// Create bubble Chart
 function updateCharts(sample) {    
   d3.json("data/samples.json").then((data) => {
   var samples = data.samples;
@@ -93,7 +93,7 @@ function updateCharts(sample) {
       margin: {t:30}
   };
   Plotly.newPlot('bubble', data, layout); 
-  // Bar Chart
+  // Create Bar Chart
   var trace1 = {
       x: sample_values.slice(0,10).reverse(),
       y: otu_ids.slice(0,10).map(otuID => `OTU ${otuID}`).reverse(),
@@ -113,7 +113,7 @@ function updateCharts(sample) {
 
 
 function optionChanged(newSample) {
-  // Fetch new data each time a new sample is selected
+  // create a new sample 
   updateCharts(newSample);
   updateMetadata(newSample);
 }
